@@ -46,11 +46,14 @@ app.get('/api/categories/:category_id',(req,res)=>{
 
 app.post('/api/customers',(req,res)=>{
     var values = [req.body.name,req.body.email,req.body.password];
-    var sql = 'INSERT INTO customer(name,email,password)';
+    var sql = 'INSERT INTO customer(name,email,password) VALUES  (?)';
     conn.query(sql,[values],(err,rows,fields)=>{
         if(!err){
             res.status(201);
-            res.send(rows)
+            res.send({'customer_id':rows.insertId})
+        }else{
+            res.sendStatus(500);
+            console.log(err)
         }
     })
 })
