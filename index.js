@@ -28,7 +28,7 @@ app.listen(8080,()=>console.log("Express Server Started"));
 
 app.get('/api',(req,res)=>{
 
-	res.sendStatus(200);
+	res.status(200).send("")
 });
 
 app.get('/api/categories/:category_id',(req,res)=>{
